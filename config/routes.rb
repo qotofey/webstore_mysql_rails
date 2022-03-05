@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :categories, key: :slug
+  resources :categories, param: :slug
 end

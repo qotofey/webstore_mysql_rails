@@ -23,6 +23,8 @@ Bundler.require(*Rails.groups)
 
 module WebStore
   class Application < Rails::Application
+    I18n.config.available_locales = %i[en ru]
+    config.i18n.default_locale = :ru
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -30,8 +32,8 @@ module WebStore
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
+
+    config.time_zone = 'Irkutsk'
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.

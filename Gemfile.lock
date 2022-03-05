@@ -60,6 +60,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     bindex (0.8.1)
     bootsnap (1.10.3)
@@ -151,6 +154,8 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -198,6 +203,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  annotate
   bootsnap (>= 1.4.4)
   byebug
   listen (~> 3.3)
@@ -206,6 +212,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.6)
   rubocop
   rubocop-performance
+  russian
   sass-rails (>= 6)
   spring
   sqlite3 (~> 1.4)
@@ -213,9 +220,6 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 4.1.0)
   webpacker (~> 5.0)
-
-RUBY VERSION
-   ruby 2.7.5p203
 
 BUNDLED WITH
    2.3.8

@@ -45,6 +45,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name, :slug)
+    params.require(:category).permit(:name, :slug, fields_attributes: %i[id type name info _destroy])
   end
 end

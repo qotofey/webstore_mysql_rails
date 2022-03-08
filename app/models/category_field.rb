@@ -21,9 +21,13 @@ class CategoryField < ApplicationRecord
 
   belongs_to :category
 
-  enum type: [
-    :integer,
-    :float,
-    :string
-  ]
+  enum type: {
+    integer: 'integer',
+    float: 'float',
+    string: 'string'
+  }
+
+  validates :type, presence: true
+  validates :name, presence: true
+  validates :info, presence: true
 end

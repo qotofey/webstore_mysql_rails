@@ -28,9 +28,9 @@ class Category < ApplicationRecord
     fields.map(&:name).compact.join(', ').capitalize
   end
 
-  # def to_param
-  #   slug
-  # end
+  def to_param
+    slug
+  end
 
   private
 

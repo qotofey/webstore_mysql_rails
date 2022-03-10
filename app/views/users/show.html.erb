@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <strong>Promo:</strong>
+  <%= @user.promo %>
+</p>
+
+<p>
   <strong>Gender:</strong>
   <%= @user.gender %>
 </p>
@@ -37,7 +42,7 @@
 
 <p>
   <strong>Created by user:</strong>
-  <%= @user.created_by_user_id %>
+  <%= @user.created_by_user.full_name_with_id %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

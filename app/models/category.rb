@@ -24,6 +24,7 @@ class Category < ApplicationRecord
   has_many :fields, class_name: 'CategoryField'
   accepts_nested_attributes_for :fields, allow_destroy: true
 
+  # TODO: важна последовательность, напиши тест
   before_validation :names_preprocess, :identifiers_preprocess
 
   def field_names

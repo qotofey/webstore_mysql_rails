@@ -33,8 +33,41 @@
 #  index_users_on_updated_by_user_id  (updated_by_user_id)
 #
 class User < ApplicationRecord
+  belongs_to :created_by_user, class_name: 'User'
+  belongs_to :updated_by_user, class_name: 'User'
+  belongs_to :deleted_by_user, class_name: 'User'
+  belongs_to :blocked_by_user, class_name: 'User'
+
   enum gender: {
-    male: 'male',
-    female: 'female'
+    male: :male,
+    female: :female
   }
+
+  # TODO: важна последовательность, напиши тест
+  before_validation :identifiers_preprocess, :fields_preprocess
+
+  protected
+
+  def full_name_with_id
+    [first_name, middle_name, last_name, "(id: #{id})"].compact.join(' ')
+  end
+
+  private
+
+  def fields_preprocess
+    self.first_name = first_name.strip.capitalize
+    self.last_name = last_name.strip.capitalize
+    self.middle_name = middle_name&.strip&.capitalize
+    self.phone = phone.gsub(/\s/, '').sub(/^8/, '7').gsub(/\D/, '')
+    self.promo.upcase!
+  end
+
+  def identifiers_preprocess
+    set_default_promo unless promo.present?
+  end
+
+  # TODO: возможна коллизия, переписать
+  def set_default_promo
+    self.promo = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
+  end
 end

@@ -33,12 +33,12 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.text_field :gender %>
+    <%= form.select :gender, User.genders.keys.map { |key| [t("user.gender.#{key}"), key] }, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :birth_date %>
-    <%= form.date_select :birth_date %>
+    <%= form.date_select :birth_date, start_year: Date.current.year - 70, end_year: Date.current.year - 18 %>
   </div>
 
   <div class="actions">

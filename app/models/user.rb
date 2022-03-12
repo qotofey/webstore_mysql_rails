@@ -33,20 +33,26 @@
 #  index_users_on_updated_by_user_id  (updated_by_user_id)
 #
 class User < ApplicationRecord
-  belongs_to :created_by_user, class_name: 'User'
-  belongs_to :updated_by_user, class_name: 'User'
-  belongs_to :deleted_by_user, class_name: 'User'
-  belongs_to :blocked_by_user, class_name: 'User'
+  include Blockable
+  include Deletable
+
+  belongs_to :created_by_user, class_name: 'User', optional: true
+  belongs_to :updated_by_user, class_name: 'User', optional: true
+  has_many :roles, class_name: 'UserRole', dependent: :destroy
+  accepts_nested_attributes_for :roles, allow_destroy: true
 
   enum gender: {
-    male: :male,
-    female: :female
+    male: 'male',
+    female: 'female'
   }
+
+  validates :phone, presence: true, length: { is: 11 }, uniqueness: true
+  validates :promo, presence: true, length: { maximum: 16 }, uniqueness: { case_sensitive: false }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # TODO: важна последовательность, напиши тест
   before_validation :identifiers_preprocess, :fields_preprocess
-
-  protected
 
   def full_name_with_id
     [first_name, middle_name, last_name, "(id: #{id})"].compact.join(' ')

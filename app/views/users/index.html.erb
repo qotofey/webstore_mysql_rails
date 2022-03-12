@@ -5,15 +5,15 @@
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Middle name</th>
-      <th>Phone</th>
-      <th>Promo</th>
-      <th>Gender</th>
-      <th>Birth date</th>
-      <th>Deleted at</th>
-      <th>Blocked at</th>
+      <th><%= t('activerecord.attributes.user.first_name') %></th>
+      <th><%= t('activerecord.attributes.user.middle_name') %></th>
+      <th><%= t('activerecord.attributes.user.last_name') %></th>
+      <th><%= t('activerecord.attributes.user.phone') %></th>
+      <th><%= t('activerecord.attributes.user.promo') %></th>
+      <th><%= t('activerecord.attributes.user.gender') %></th>
+      <th><%= t('activerecord.attributes.user.birth_date') %></th>
+      <th><%= t('activerecord.attributes.user.deleted_at') %></th>
+      <th><%= t('activerecord.attributes.user.blocked_at') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,11 +22,11 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
         <td><%= user.middle_name %></td>
+        <td><%= user.last_name %></td>
         <td><%= user.phone %></td>
         <td><%= user.promo %></td>
-        <td><%= user.gender %></td>
+        <td><%= t("user.gender.#{user.gender}") %></td>
         <td><%= user.birth_date %></td>
         <td><%= user.deleted_at %></td>
         <td><%= user.blocked_at %></td>

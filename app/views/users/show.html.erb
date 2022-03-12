@@ -1,48 +1,53 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
+  <strong><%= t('activerecord.attributes.user.first_name') %>:</strong>
   <%= @user.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Middle name:</strong>
+  <strong><%= t('activerecord.attributes.user.middle_name') %>:</strong>
   <%= @user.middle_name %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong><%= t('activerecord.attributes.user.last_name') %>:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.user.phone') %>:</strong>
   <%= @user.phone %>
 </p>
 
 <p>
-  <strong>Promo:</strong>
+  <strong><%= t('activerecord.attributes.user.promo') %>:</strong>
   <%= @user.promo %>
 </p>
 
 <p>
-  <strong>Gender:</strong>
-  <%= @user.gender %>
+  <strong><%= t('activerecord.attributes.user.gender') %>:</strong>
+  <%= t("user.gender.#{@user.gender}") %>
 </p>
 
 <p>
-  <strong>Birth date:</strong>
+  <strong><%= t('activerecord.attributes.user.birth_date') %>:</strong>
   <%= @user.birth_date %>
 </p>
 
 <p>
-  <strong>Deleted at:</strong>
+  <strong><%= t('activerecord.attributes.user.deleted_at') %>:</strong>
   <%= @user.deleted_at %>
 </p>
 
 <p>
+  <strong><%= t('activerecord.attributes.user.blocked_at') %>:</strong>
+  <%= @user.blocked_at %>
+</p>
+
+<p>
   <strong>Created by user:</strong>
-  <%= @user.created_by_user.full_name_with_id %>
+  <%= @user.created_by_user&.full_name_with_id %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

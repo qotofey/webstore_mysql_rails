@@ -1,0 +1,24 @@
+ru:
+  activerecord:
+    models:
+      user: Пользователь
+      users: Пользователи
+      user_role: Пользовательская роль
+      user_roles: Пользовательские роли
+      category: Категория товаров
+      categories: Категории товаров
+      category_field: Настраиваемое поле категории
+      category_fields: Настраиваемые поля категорий
+    attributes:
+      user:
+        last_name: Фамилия
+        first_name: Имя
+        middle_name: Отчество
+        gender: Гендер
+        phone: Номер телефона
+        promo: Промокод
+        birth_date: Дата рождения
+        deleted_at: Дата удаления
+        blocked_at: Дата блокировки
+      user_role:
+        position: Ролевая позиция

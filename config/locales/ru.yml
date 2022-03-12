@@ -1,0 +1,39 @@
+ru:
+  menu:
+    home: 'Главная'
+    users: 'Пользователи'
+    user_roles: 'Роли'
+    categories: 'Категории'
+    category_fields: 'Настраиваемые поля категорий'
+  home:
+    index:
+      title: 'Добро пожаловать на мой сайт!'
+  action:
+    show: 'Показать'
+    back: 'Назад'
+    edit: 'Редактировать'
+    create: 'Создать'
+    destroy: 'Удалить'
+  categories:
+    index:
+      title: 'Категории'
+    show:
+      title: 'Категория'
+    new:
+      title: 'Новая категория'
+    edit:
+      title: 'Редактирование категрии'
+  users:
+    index:
+      title: 'Пользователи'
+    show:
+      title: 'Пользователь'
+    new:
+      title: 'Новый пользователь'
+    edit:
+      title: 'Редактирование пользователя'
+
+  user:
+    gender:
+      male: муж.
+      female: жен.

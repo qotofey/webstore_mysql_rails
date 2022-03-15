@@ -29,7 +29,6 @@ class CategoryFieldsController < ApplicationController
     end
   end
 
-  # DELETE /category_fields/1
   def destroy
     @category_field.destroy
     redirect_to category_fields_url, notice: 'Category field was successfully destroyed.'

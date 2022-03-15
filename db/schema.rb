@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_184450) do
     t.date "birth_date"
     t.datetime "deleted_at"
     t.datetime "blocked_at"
+    t.datetime "confirmed_at"
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at"
     t.integer "created_by_user_id"

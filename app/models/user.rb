@@ -7,6 +7,7 @@
 #  id                 :integer          not null, primary key
 #  birth_date         :date
 #  blocked_at         :datetime
+#  confirmed_at       :datetime
 #  deleted_at         :datetime
 #  failed_attempts    :integer          default(0), not null
 #  first_name         :string
@@ -48,14 +49,21 @@ class User < ApplicationRecord
 
   validates :phone, presence: true, length: { is: 11 }, uniqueness: true
   validates :promo, presence: true, length: { maximum: 16 }, uniqueness: { case_sensitive: false }
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+
+  with_options if: :confirmed? do
+    validates :first_name, presence: true
+    validates :last_name, presence: true
+  end
 
   # TODO: важна последовательность, напиши тест
   before_validation :identifiers_preprocess, :fields_preprocess
 
   def full_name_with_id
-    [first_name, middle_name, last_name, "(id: #{id})"].compact.join(' ')
+    [first_name, middle_name.presence, last_name, "(id: #{id})"].compact.join(' ')
+  end
+
+  def confirmed?
+    !!confirmed_at
   end
 
   private

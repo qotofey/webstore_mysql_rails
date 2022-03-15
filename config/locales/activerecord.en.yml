@@ -20,6 +20,5 @@ ru:
         birth_date: Дата рождения
         deleted_at: Дата удаления
         blocked_at: Дата блокировки
-        confirmed_at: Дата подтверждения
       user_role:
         position: Ролевая позиция

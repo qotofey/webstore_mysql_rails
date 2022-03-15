@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.date :birth_date
       t.datetime :deleted_at
       t.datetime :blocked_at
+      t.datetime :confirmed_at
 
       t.integer  :failed_attempts, default: 0, null: false
       t.datetime :locked_at

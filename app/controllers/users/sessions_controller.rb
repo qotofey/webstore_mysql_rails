@@ -2,16 +2,20 @@
 
 class Users::SessionsController < ApplicationController
   def new
-
+    @user = User.new
   end
 
   def create
+    @user = User.new(user_params)
 
+    if @user.save(validation: true)
+      redirect_to @user, notice: 'Session was successfully created.'
+    else
+      render :new
+    end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   private
 

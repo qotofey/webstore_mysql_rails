@@ -26,7 +26,7 @@
         <td><%= user.last_name %></td>
         <td><%= user.phone %></td>
         <td><%= user.promo %></td>
-        <td><%= t("user.gender.#{user.gender}") %></td>
+        <td><%= t("user.gender.#{user.gender || :void}") %></td>
         <td><%= user.birth_date %></td>
         <td><%= user.deleted_at %></td>
         <td><%= user.blocked_at %></td>

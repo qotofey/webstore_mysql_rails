@@ -56,7 +56,7 @@ class User < ApplicationRecord
   end
 
   # TODO: важна последовательность, напиши тест
-  before_validation :identifiers_preprocess, :fields_preprocess
+  before_validation :identifiers_preprocess, :names_preprocess, :key_fields_preprocess
 
   def full_name_with_id
     [first_name, middle_name.presence, last_name, "(id: #{id})"].compact.join(' ')
@@ -68,12 +68,15 @@ class User < ApplicationRecord
 
   private
 
-  def fields_preprocess
-    self.first_name = first_name.strip.capitalize
-    self.last_name = last_name.strip.capitalize
+  def names_preprocess
+    self.first_name = first_name&.strip&.capitalize
+    self.last_name = last_name&.strip&.capitalize
     self.middle_name = middle_name&.strip&.capitalize
+  end
+
+  def key_fields_preprocess
     self.phone = phone.gsub(/\s/, '').sub(/^8/, '7').gsub(/\D/, '')
-    self.promo.upcase!
+    promo.upcase!
   end
 
   def identifiers_preprocess

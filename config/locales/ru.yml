@@ -37,3 +37,4 @@ ru:
     gender:
       male: муж.
       female: жен.
+      void: '-'

@@ -1,0 +1,11 @@
+<%= form_with(model: user, url: "/users/#{user.id}/confirmations", method: :post) do |form| %>
+
+  <div class="field">
+    <%= form.label :confirmation_code %>
+    <%= form.text_field :confirmation_code %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

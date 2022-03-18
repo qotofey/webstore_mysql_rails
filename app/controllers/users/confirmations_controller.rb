@@ -7,7 +7,7 @@ module Users
     def new; end
 
     def create
-      # code =
+      session[:current_user_id] = @user.id
       if @user
         redirect_to edit_user_path(@user), notice: 'Session was successfully created.'
       else

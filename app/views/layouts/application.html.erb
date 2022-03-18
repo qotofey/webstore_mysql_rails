@@ -16,6 +16,11 @@
       <li><%= link_to 'User Roles', user_roles_path %></li>
       <li><%= link_to 'Categories', categories_path %></li>
       <li><%= link_to 'Sign In', new_users_session_path %></li>
+      <% if user_signed_in? %>
+        <%= current_user&.full_name_with_id %>
+      <% else %>
+        Не авторизован!!!
+      <% end %>
     </ul>
     <%= yield %>
   </body>

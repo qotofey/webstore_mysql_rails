@@ -36,6 +36,7 @@
 class User < ApplicationRecord
   include Blockable
   include Deletable
+  include Confirmable
 
   belongs_to :created_by_user, class_name: 'User', optional: true
   belongs_to :updated_by_user, class_name: 'User', optional: true
@@ -58,12 +59,12 @@ class User < ApplicationRecord
   # TODO: важна последовательность, напиши тест
   before_validation :identifiers_preprocess, :names_preprocess, :key_fields_preprocess
 
-  def full_name_with_id
-    [first_name, middle_name.presence, last_name, "(id: #{id})"].compact.join(' ')
+  def full_name
+    [first_name, middle_name.presence, last_name].compact.join(' ')
   end
 
-  def confirmed?
-    !!confirmed_at
+  def full_name_with_id
+    "#{full_name} (id: #{id})"
   end
 
   private

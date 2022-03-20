@@ -1,27 +1,29 @@
 # frozen_string_literal: true
 
-module Users
-  class SessionsController < ApplicationController
-    def new
-      @user = User.new
+class Users::SessionsController < ApplicationController
+  def new
+    @user = User.new
+  end
+
+  def create
+    # добавить валидацию теллефона
+    phone_number = Preprocessor.for_phone(user_params[:phone])
+    user = User.find_or_create_by(phone: phone_number)
+    # !проверить удалён ли он, если да - восстановить данные после подтверждения (confirmations)
+    # проверить заблокирован ли он, если да - то перезагрузить страницу входа и вывести сообщение о блокировке
+
+    if user.blocked?
+      render :new
+    else
+      redirect_to new_user_confirmation_path(user), notice: 'Session was successfully created.'
     end
+  end
 
-    def create
-      user = User.find_or_create_by(user_params)
+  def destroy; end
 
-      if user
-        redirect_to new_user_confirmation_path(user), notice: 'Session was successfully created.'
-      else
-        render :new
-      end
-    end
+  private
 
-    def destroy; end
-
-    private
-
-    def user_params
-      params.require(:user).permit(:phone)
-    end
+  def user_params
+    params.require(:user).permit(:phone)
   end
 end

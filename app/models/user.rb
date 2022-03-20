@@ -40,6 +40,7 @@ class User < ApplicationRecord
 
   belongs_to :created_by_user, class_name: 'User', optional: true
   belongs_to :updated_by_user, class_name: 'User', optional: true
+
   has_many :roles, class_name: 'UserRole', dependent: :destroy
   accepts_nested_attributes_for :roles, allow_destroy: true
 
@@ -70,14 +71,14 @@ class User < ApplicationRecord
   private
 
   def names_preprocess
-    self.first_name = first_name&.strip&.capitalize
-    self.last_name = last_name&.strip&.capitalize
-    self.middle_name = middle_name&.strip&.capitalize
+    self.first_name = Preprocessor.for_name(first_name)
+    self.last_name = Preprocessor.for_name(last_name)
+    self.middle_name = Preprocessor.for_name(middle_name)
   end
 
   def key_fields_preprocess
-    self.phone = phone.gsub(/\s/, '').sub(/^8/, '7').gsub(/\D/, '')
-    promo.upcase!
+    self.phone = Preprocessor.for_phone(phone)
+    self.promo = Preprocessor.for_promo(promo)
   end
 
   def identifiers_preprocess

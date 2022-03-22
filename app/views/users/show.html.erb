@@ -27,7 +27,7 @@
 
 <p>
   <strong><%= t('activerecord.attributes.user.gender') %>:</strong>
-  <%= t("user.gender.#{@user.gender}") %>
+  <%= t("user.gender.#{@user.gender || :void}") %>
 </p>
 
 <p>

@@ -23,3 +23,4 @@ ru:
         confirmed_at: Дата подтверждения
       user_role:
         position: Ролевая позиция
+        positions: Ролевые позиции

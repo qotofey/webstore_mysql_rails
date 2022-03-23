@@ -46,6 +46,11 @@
 </p>
 
 <p>
+  <strong><%= t('activerecord.attributes.user_role.positions') %>:</strong>
+  <%= @user.roles(&:position).joins(', ') %>
+</p>
+
+<p>
   <strong>Created by user:</strong>
   <%= @user.created_by_user&.full_name_with_id %>
 </p>

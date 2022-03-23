@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    @users = User.all
+    @users = User.includes(:roles).all
   end
 
   def show; end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-      .permit(:first_name, :last_name, :middle_name, :phone, :promo, :gender, :birth_date, :deleted_at,
-              :created_by_user_id)
+      .permit(:first_name, :last_name, :middle_name, :phone, :promo, :gender, :birth_date,
+              :deleted, :blocked)
   end
 end

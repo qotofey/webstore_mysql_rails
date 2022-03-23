@@ -1,4 +1,4 @@
-<%= form_with(model: user, url: "/users/#{user.id}/confirmations", method: :post) do |form| %>
+<%= form_with(model: user, url: "/users/#{user.id}/phone_confirmations", method: :post) do |form| %>
 
   <div class="field">
     <%= form.label :confirmation_code %>

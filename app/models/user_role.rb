@@ -19,7 +19,7 @@ class UserRole < ApplicationRecord
   belongs_to :user
 
   enum position: {
-    admin: :admin,
-    moder: :moder
+    admin: 'admin',
+    moder: 'moder'
   }
 end

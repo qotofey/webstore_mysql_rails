@@ -12,13 +12,13 @@ module Preprocessor
     end
 
     def for_promo(promo)
-      return nil unless phone.is_a? String
+      return nil unless promo.is_a? String
 
       promo.strip.upcase
     end
 
     def for_name(name)
-      return nil unless phone.is_a? String
+      return nil unless name.is_a? String
 
       name.strip.capitalize
     end

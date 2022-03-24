@@ -16,9 +16,9 @@
       <tr>
         <td><%= user_role.position %></td>
         <td><%= user_role.user_id %></td>
-        <td><%= link_to 'Show', user_role %></td>
-        <td><%= link_to 'Edit', edit_user_role_path(user_role) %></td>
-        <td><%= link_to 'Destroy', user_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('action.show'), user_role %></td>
+        <td><%= link_to t('action.edit'), edit_user_role_path(user_role) %></td>
+        <td><%= link_to t('action.destroy'), user_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

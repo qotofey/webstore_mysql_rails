@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :sessions, only: %i[new create destroy]
   end
   resources :users do
-    resources :confirmations, only: %i[new create], controller: 'phone_confirmations'
+    resources :phone_confirmations, only: %i[new create], controller: 'users/phone_confirmations'
   end
   resources :user_roles
   resources :categories, param: :slug

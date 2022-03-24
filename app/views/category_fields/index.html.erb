@@ -18,9 +18,9 @@
         <td><%= category_field.name %></td>
         <td><%= category_field.type %></td>
         <td><%= category_field.info %></td>
-        <td><%= link_to 'Show', category_field %></td>
-        <td><%= link_to 'Edit', edit_category_field_path(category_field) %></td>
-        <td><%= link_to 'Destroy', category_field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('action.show'), category_field %></td>
+        <td><%= link_to t('action.edit'), edit_category_field_path(category_field) %></td>
+        <td><%= link_to t('action.destroy'), category_field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

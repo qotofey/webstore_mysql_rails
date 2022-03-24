@@ -5,6 +5,8 @@ ru:
     user_roles: 'Роли'
     categories: 'Категории'
     category_fields: 'Настраиваемые поля категорий'
+    sign_in: 'Войти'
+    sign_out: 'Выйти'
   home:
     index:
       title: 'Добро пожаловать на мой сайт!'
@@ -12,6 +14,7 @@ ru:
     show: 'Показать'
     back: 'Назад'
     edit: 'Редактировать'
+    save: 'Сохранить'
     create: 'Создать'
     destroy: 'Удалить'
   categories:
@@ -38,3 +41,7 @@ ru:
       male: муж.
       female: жен.
       void: '-'
+  role:
+    position:
+      admin: 'Администратор'
+      moder: 'Модератор'

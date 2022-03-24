@@ -6,11 +6,10 @@ class Users::SessionsController < ApplicationController
   end
 
   def create
-    # добавить валидацию теллефона
     phone_number = Preprocessor.for_phone(user_params[:phone])
     user = User.find_or_create_by(phone: phone_number)
-    # !проверить удалён ли он, если да - восстановить данные после подтверждения (phone_confirmations)
     # проверить заблокирован ли он, если да - то перезагрузить страницу входа и вывести сообщение о блокировке
+    # !проверить удалён ли он, если да - восстановить данные после подтверждения (phone_confirmations)
 
     if user.blocked?
       render :new
@@ -19,7 +18,11 @@ class Users::SessionsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    User::SessionDeletionService.new(session).call
+
+    redirect_to users_url, notice: 'User was successfully destroyed.'
+  end
 
   private
 

@@ -11,17 +11,26 @@
   </head>
 
   <body>
-    <ul>
-      <li><%= link_to 'Users', users_path %></li>
-      <li><%= link_to 'User Roles', user_roles_path %></li>
-      <li><%= link_to 'Categories', categories_path %></li>
-      <li><%= link_to 'Sign In', new_users_session_path %></li>
-      <% if user_signed_in? %>
-        <%= current_user&.full_name_with_id %>
-      <% else %>
-        Не авторизован!!!
-      <% end %>
-    </ul>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to t('menu.home'), root_path %></li>
+          <li><%= link_to t('menu.users'), users_path %></li>
+          <li><%= link_to t('menu.user_roles'), user_roles_path %></li>
+          <li><%= link_to t('menu.categories'), categories_path %></li>
+          <li><%= link_to t('menu.category_fields'), categories_path %></li>
+        </ul>
+
+        <ul>
+          <% if user_signed_in? %>
+            <li><%= current_user&.full_name_with_id %></li>
+            <li><%= link_to t('menu.sign_out'), users_session_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <% else %>
+            <li><%= link_to t('menu.sign_in'), new_users_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -11,19 +11,19 @@
   </head>
 
   <body>
-    <header>
+    <header class="header">
       <nav>
-        <ul>
-          <li><%= link_to t('menu.home'), root_path %></li>
-          <li><%= link_to t('menu.users'), users_path %></li>
-          <li><%= link_to t('menu.user_roles'), user_roles_path %></li>
-          <li><%= link_to t('menu.categories'), categories_path %></li>
-          <li><%= link_to t('menu.category_fields'), categories_path %></li>
+        <ul class="menu">
+          <li class="menu__item"><%= link_to t('menu.home'), root_path, class: 'menu__link' %></li>
+          <li class="menu__item"><%= link_to t('menu.users'), users_path, class: 'menu__link' %></li>
+          <li class="menu__item"><%= link_to t('menu.user_roles'), user_roles_path, class: 'menu__link' %></li>
+          <li class="menu__item"><%= link_to t('menu.categories'), categories_path, class: 'menu__link' %></li>
+          <li class="menu__item"><%= link_to t('menu.category_fields'), categories_path, class: 'menu__link' %></li>
         </ul>
 
         <ul>
           <% if user_signed_in? %>
-            <li><%= current_user&.full_name_with_id %></li>
+            <li><%= link_to current_user&.full_name_with_id, user_path(current_user) %></li>
             <li><%= link_to t('menu.sign_out'), users_session_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %></li>
           <% else %>
             <li><%= link_to t('menu.sign_in'), new_users_session_path %></li>
@@ -32,5 +32,9 @@
       </nav>
     </header>
     <%= yield %>
+
+    <footer class="footer">
+      Designed by Tim
+    </footer>
   </body>
 </html>

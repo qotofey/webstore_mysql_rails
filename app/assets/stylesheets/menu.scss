@@ -1,0 +1,45 @@
+.header {
+  width: 100%;
+  background: #5C6BC0;
+}
+
+.footer {
+  width: 100%;
+}
+
+.menu {
+  display: block;
+  padding: 8px;
+  list-style-type: none;
+
+  &__item {
+    display: inline;
+    color: #EFEFEF;
+  }
+
+  &__link {
+    text-transform: uppercase;
+
+    &_active {
+      color: white;
+    }
+  }
+}
+
+.navigation {
+  width: 100%;
+
+  &_start {
+
+  }
+  &_end {
+
+  }
+  &_center {
+
+  }
+
+  &__item {
+
+  }
+}

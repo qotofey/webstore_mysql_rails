@@ -15,14 +15,6 @@
  *= require_self
  */
 
-body {
-    background: #eeeeee;
-}
-
-header {
-    background: aliceblue;
-}
-
 a {
-    background: antiquewhite;
+  background: antiquewhite;
 }

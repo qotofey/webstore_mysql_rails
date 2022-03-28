@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User::SessionDeletionService
   def initialize(session)
     @session = session

@@ -1,4 +1,7 @@
 ru:
+  errors:
+    messages:
+      bad_format: неверный формат
   activerecord:
     models:
       user: Пользователь

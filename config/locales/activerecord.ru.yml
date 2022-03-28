@@ -2,6 +2,7 @@ ru:
   errors:
     messages:
       bad_format: неверный формат
+      only_latin_and_numbers: должен состоять из цифр или букв латинского алфавита
   activerecord:
     models:
       user: Пользователь

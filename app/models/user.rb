@@ -50,7 +50,7 @@ class User < ApplicationRecord
   }
 
   validates :phone, presence: true, length: { is: 11 }, uniqueness: true
-  validates :promo, presence: true, length: { maximum: 16 }, uniqueness: { case_sensitive: false }
+  validates :promo, promo: true, presence: true, length: { maximum: 16 }
 
   with_options if: :confirmed? do
     validates :first_name, presence: true

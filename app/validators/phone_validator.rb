@@ -9,5 +9,11 @@ class PhoneValidator < ActiveModel::EachValidator
     def valid?(phone)
       phone.to_s =~ /\A7[3489]\d{9}\z/
     end
+
+    def valid_country_code?(phone); end
+
+    def valid_operator_code?(phone); end
+
+    def valid_telephone_code?(phone); end
   end
 end

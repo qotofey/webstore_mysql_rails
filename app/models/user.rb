@@ -37,12 +37,10 @@ class User < ApplicationRecord
   include Blockable
   include Deletable
   include Confirmable
+  include Roleable
 
   belongs_to :created_by_user, class_name: 'User', optional: true
   belongs_to :updated_by_user, class_name: 'User', optional: true
-
-  has_many :roles, class_name: 'UserRole', dependent: :destroy
-  accepts_nested_attributes_for :roles, allow_destroy: true
 
   enum gender: {
     male: 'male',

@@ -14,7 +14,7 @@ class Users::PhoneConfirmationsController < ApplicationController
     #
     #
     if @user
-      User::SessionCreationService.new(session, @user).call
+      session[:confirmed?] = true
 
       redirect_to edit_user_path(@user), notice: 'Session was successfully created.'
     else

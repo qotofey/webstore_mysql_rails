@@ -7,14 +7,16 @@ class Users::SessionsController < ApplicationController
 
   def create
     phone_number = Preprocessor.for_phone(user_params[:phone])
-    user = User.find_or_create_by(phone: phone_number)
+    user = User.find_by(id: user_params[:id]) || User.find_or_create_by(phone: phone_number)
     # проверить заблокирован ли он, если да - то перезагрузить страницу входа и вывести сообщение о блокировке
     # !проверить удалён ли он, если да - восстановить данные после подтверждения (phone_confirmations)
 
-    if user.blocked?
-      render :new
+    if confirmed? || current_user&.admin?
+      User::SessionCreationService.new(session, user).call
+
+      redirect_to edit_user_path(user), notice: 'Session was successfully created.'
     else
-      redirect_to new_user_phone_confirmation_path(user), notice: 'Session was successfully created.'
+      redirect_to new_user_phone_confirmation_path(user)
     end
   end
 
@@ -27,6 +29,10 @@ class Users::SessionsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:phone)
+    params.require(:user).permit(:phone, :id)
+  end
+
+  def confirmed?
+    @confirmed ||= session.delete(:confirmed?)
   end
 end

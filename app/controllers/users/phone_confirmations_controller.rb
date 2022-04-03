@@ -3,6 +3,8 @@
 class Users::PhoneConfirmationsController < ApplicationController
   before_action :set_user, only: %i[new create]
 
+  skip_before_action :ensure_authentication
+
   def new; end
 
   def create

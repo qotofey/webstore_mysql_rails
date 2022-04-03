@@ -6,5 +6,7 @@ class User::PhoneConfirmationService
     @current_user = current_user
   end
 
-  def call; end
+  def call
+
+  end
 end

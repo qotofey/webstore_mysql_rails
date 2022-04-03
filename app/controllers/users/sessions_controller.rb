@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < ApplicationController
+  skip_before_action :ensure_authentication
+
   def new
     @user = User.new
   end

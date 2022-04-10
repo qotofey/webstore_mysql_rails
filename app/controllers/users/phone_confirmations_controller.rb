@@ -8,8 +8,10 @@ class Users::PhoneConfirmationsController < ApplicationController
   def new; end
 
   def create
-    # проверить есть ли пользователь
-    # проверить есть ли
+    code = user_params[:confirmation_code]
+
+    # проверить действителен ли код
+    @user.valid
     # user.confirm
     #
     # user.confirmed?

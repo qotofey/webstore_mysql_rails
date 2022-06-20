@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
   def render_forbidden
     render status: :forbidden, html: '403'
   end
+
+  def render_no_content
+    render status: :no_content
+  end
 end

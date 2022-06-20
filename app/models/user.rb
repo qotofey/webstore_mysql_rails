@@ -39,6 +39,9 @@ class User < ApplicationRecord
   include Confirmable
   include Roleable
 
+  LOCK_TIME_IN_SECONDS = 300
+  LOCK_LIMIT = 5
+
   belongs_to :created_by_user, class_name: 'User', optional: true
   belongs_to :updated_by_user, class_name: 'User', optional: true
 
@@ -86,5 +89,20 @@ class User < ApplicationRecord
   # TODO: возможна коллизия, переписать
   def set_default_promo
     self.promo = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
+  end
+
+  def locked?
+    return true if locked_at.nil?
+
+    self.locked_at + LOCK_TIME_IN_SECONDS > Time.now
+  end
+
+  def increase_failed_confirmation_attempts
+    return if LOCK_LIMIT < self.failed_confirmation_attempts
+
+    update_column(
+      :failed_confirmation_attempts,
+      self.failed_confirmation_attempts + 1
+    )
   end
 end

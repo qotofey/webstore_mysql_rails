@@ -7,6 +7,18 @@ class User::PhoneConfirmationService
   end
 
   def call
-    @user.confirm
+    return if @user.locked? || @user.blocked? || @user.deleted?
+
+    if confirmation_code_correct?
+      @user.confirm
+    else
+      @user.fail_confirmation_attempts
+    end
+  end
+
+  private
+
+  def confirmation_code_correct?
+    @user.confirmation_code == @code
   end
 end

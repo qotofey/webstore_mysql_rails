@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.datetime :confirmed_at
 
       t.integer  :failed_confirmation_attempts, default: 0, null: false
-      t.datetime :locked_at
+      t.datetime :failed_at
 
       t.references :created_by_user, references: :users
       t.references :updated_by_user, references: :users

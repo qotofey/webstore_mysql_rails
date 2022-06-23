@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20_220_309_184_450) do
     t.datetime 'blocked_at'
     t.datetime 'confirmed_at'
     t.integer 'failed_attempts', default: 0, null: false
-    t.datetime 'locked_at'
+    t.datetime 'failed_at'
     t.integer 'created_by_user_id'
     t.integer 'updated_by_user_id'
     t.integer 'deleted_by_user_id'

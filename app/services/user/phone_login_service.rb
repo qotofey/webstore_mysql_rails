@@ -6,28 +6,22 @@ class User::PhoneLoginService
   end
 
   def call
-    @user = find_user || create_unconfirmed_user
+    user = find_user || create_unconfirmed_user
+
+    return if user.blocked? || user.deleted? || user.locked?
+
+    user
   end
 
   private
 
   def find_user
-    User.find_by(phone: @phone)
+    ::User.find_by(phone: @phone)
   end
 
   def create_unconfirmed_user
-    User.create(phone: @phone)
+    ::User.create(phone: @phone)
   end
 
-  def user_deleted?
-    @user.deleted?
-  end
-
-  def user_blocked?
-    @user.blocked?
-  end
-
-  def user_locked?
-    @user.locked?
-  end
+  def send_confirmation_code; end
 end

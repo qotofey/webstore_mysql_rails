@@ -13,7 +13,7 @@
 #  first_name         :string
 #  gender             :string
 #  last_name          :string
-#  locked_at          :datetime
+#  failed_at          :datetime
 #  middle_name        :string
 #  phone              :string           default(""), not null
 #  promo              :string           default(""), not null
@@ -39,8 +39,8 @@ class User < ApplicationRecord
   include Confirmable
   include Roleable
 
-  LOCK_TIME_IN_SECONDS = 600
-  LOCK_LIMIT = 5
+  LOGIN_LOCK_TIME_IN_SECONDS = 600
+  LOGIN_ATTEMPT_LIMIT = 5
 
   belongs_to :created_by_user, class_name: 'User', optional: true
   belongs_to :updated_by_user, class_name: 'User', optional: true
@@ -70,26 +70,30 @@ class User < ApplicationRecord
   end
 
   def locked?
-    return false if locked_at.nil?
-    return false if failed_confirmation_attempts <= LOCK_LIMIT
+    return false if failed_at.nil?
+    return false if failed_confirmation_attempts < LOGIN_ATTEMPT_LIMIT
 
-    self.locked_at + LOCK_TIME_IN_SECONDS > Time.now
+    self.failed_at + LOGIN_LOCK_TIME_IN_SECONDS > Time.now
   end
 
   def fail_confirmation_attempts
     locked_attrs = {}
 
-    if locked_at.nil?
-      locked_attrs[:locked_at] = Time.now
+    if failed_at.nil?
+      locked_attrs[:failed_at] = Time.now
       locked_attrs[:failed_confirmation_attempts] = self.failed_confirmation_attempts + 1
-    elsif locked_at + LOCK_TIME_IN_SECONDS <= Time.now
-      locked_attrs[:locked_at] = nil
+    elsif failed_at + LOGIN_LOCK_TIME_IN_SECONDS <= Time.now
+      locked_attrs[:failed_at] = nil
       locked_attrs[:failed_confirmation_attempts] = 0
     else
       locked_attrs[:failed_confirmation_attempts] = self.failed_confirmation_attempts + 1
     end
 
     update_columns(locked_attrs)
+  end
+
+  def confirmation_code
+    '541243'
   end
 
   private

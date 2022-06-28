@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20_220_309_184_450) do
     t.datetime 'deleted_at'
     t.datetime 'blocked_at'
     t.datetime 'confirmed_at'
-    t.integer 'failed_attempts', default: 0, null: false
+    t.integer 'failed_confirmation_attempts', default: 0, null: false
     t.datetime 'failed_at'
     t.integer 'created_by_user_id'
     t.integer 'updated_by_user_id'

@@ -3,7 +3,7 @@
 class Users::PhoneConfirmationsController < ApplicationController
   before_action :set_user, only: %i[new create]
 
-  skip_before_action :ensure_authentication
+  skip_before_action :authenticate
 
   def new; end
 
@@ -33,6 +33,6 @@ class Users::PhoneConfirmationsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:confirmation_code)
+    params.require(:user).permit(:confirmation_code, :phone)
   end
 end

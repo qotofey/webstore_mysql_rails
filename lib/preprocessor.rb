@@ -2,7 +2,7 @@
 
 module Preprocessor
   class << self
-    def for_phone(phone)
+    def run_for_phone(phone)
       return nil unless phone.is_a? String
 
       phone
@@ -11,16 +11,22 @@ module Preprocessor
         .gsub(/\D/, '')
     end
 
-    def for_promo(promo)
+    def run_for_promo(promo)
       return nil unless promo.is_a? String
 
       promo.strip.upcase
     end
 
-    def for_name(name)
+    def run_for_name(name)
       return nil unless name.is_a? String
 
       name.strip.capitalize
+    end
+
+    def run_for_code(code)
+      return nil unless code.is_a? String
+
+      code.strip.upcase
     end
   end
 end

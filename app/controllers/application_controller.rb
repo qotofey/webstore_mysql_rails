@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :ensure_authentication
+  before_action :authenticate
 
   helper_method :current_user, :user_signed_in?
 
@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:current_user_id])
+    @current_user ||= User.find_by(id: current_user_id)
   end
 
   def user_signed_in?
     !!current_user
   end
 
-  def ensure_authentication
+  def authenticate
     return if user_signed_in?
 
     render_unauthorized

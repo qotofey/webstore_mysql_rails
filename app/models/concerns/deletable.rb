@@ -18,7 +18,7 @@ module Deletable
   private
 
   def check_deletion
-    return unless @deleted.in? [false, true]
+    return unless [false, true].include? @deleted
 
     self.deleted_at = @deleted ? DateTime.now : nil
   end

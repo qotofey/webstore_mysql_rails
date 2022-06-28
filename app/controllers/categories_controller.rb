@@ -3,7 +3,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
-  skip_before_action :ensure_authentication, only: %i[index show]
+  skip_before_action :authenticate, only: %i[index show]
 
   def index
     @categories = Category.all

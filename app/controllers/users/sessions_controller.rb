@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < ApplicationController
-  skip_before_action :ensure_authentication
+  skip_before_action :authenticate
 
   def new
     @user = User.new
   end
 
   def create
-    phone_number = Preprocessor.for_phone(user_params[:phone])
+    phone_number = Preprocessor.run_for_phone(user_params[:phone])
     user = find_user
     user.present?
     user.blocked?
@@ -35,7 +35,7 @@ class Users::SessionsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:phone, :id)
+    params.require(:user).permit(:phone, :id, :code)
   end
 
   def confirmed?

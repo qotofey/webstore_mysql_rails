@@ -50,6 +50,17 @@ class User < ApplicationRecord
     female: 'female'
   }
 
+  has_many :roles, class_name: 'UserRole', dependent: :destroy
+  accepts_nested_attributes_for :roles, allow_destroy: true
+
+  UserRole.positions.each_key do |key|
+    next if method_defined? "#{key}?"
+
+    define_method "#{key}?" do
+      roles.pluck(:position).include?(key)
+    end
+  end
+
   validates :phone, presence: true, length: { is: 11 }, uniqueness: true
   validates :promo, promo: true, presence: true, length: { maximum: 16 }
 
@@ -99,14 +110,14 @@ class User < ApplicationRecord
   private
 
   def names_preprocess
-    self.first_name = Preprocessor.for_name(first_name)
-    self.last_name = Preprocessor.for_name(last_name)
-    self.middle_name = Preprocessor.for_name(middle_name)
+    self.first_name = Preprocessor.run_for_name(first_name)
+    self.last_name = Preprocessor.run_for_name(last_name)
+    self.middle_name = Preprocessor.run_for_name(middle_name)
   end
 
   def key_fields_preprocess
-    self.phone = Preprocessor.for_phone(phone)
-    self.promo = Preprocessor.for_promo(promo)
+    self.phone = Preprocessor.run_for_phone(phone)
+    self.promo = Preprocessor.run_for_promo(promo)
   end
 
   def identifiers_preprocess

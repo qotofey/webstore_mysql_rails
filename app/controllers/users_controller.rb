@@ -47,7 +47,8 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-      .permit(:first_name, :last_name, :middle_name, :phone, :promo, :gender, :birth_date,
-              :deleted, :blocked)
+      .permit(:first_name, :last_name, :middle_name, :phone, :promo,
+              :gender, :birth_date, :deleted, :blocked,
+              roles_attributes: %i[id position _destroy])
   end
 end
